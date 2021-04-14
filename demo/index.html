@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>graph-page-filter demo</title>
+	<style>
+		/* some global styles */
+		@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+		body, input {
+			font-family: 'Open Sans', sans-serif;
+		}
+
+		input {
+			width: 250px;
+			height: 50px;
+			border: 1px solid #333;
+			padding: 0 15px;
+			font-size: 18px;
+		}
+
+		h3 {
+			font-size: 26px;
+		}
+
+		ul {
+			list-style: none;
+		}
+
+		a {
+			text-decoration: none;
+			color: #333;
+			font-size: 20px;
+		}
+
+		.filter-highlight {
+			color: yellow;
+		}
+
+		.custom-highlight {
+			color: darkkhaki;
+		}
+
+		.custom-hidden {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<h3>По умолчанию</h3>
+		<input type="search" placeholder="Поиск" name="search" id="search" data-items="first">
+		<div class="search-result" data-items-target="first">
+			<ul>
+				<li><a href="#" class="filter-element">Монитор Philips E line 24" [1920x1080@144 Гц, VA, 1 мс]</a></li>
+				<li><a href="#" class="filter-element">Монитор Acer Gaming 27" [2560x1440@75 Гц, TN, 1 мс]</a></li>
+				<li><a href="#" class="filter-element">Монитор AOC 27G2U/BK 27" [1920x1080@144 Гц, IPS, 1 мс]</a></li>
+				<li><a href="#" class="filter-element">Монитор ASUS ZenScreen 14" [1920x1080@60 Гц, IPS, 5 мс]</a></li>
+			</ul>
+		</div>
+	</div>
+	<div>
+		<h3>Кастомные классы со скрытием элементов</h3>
+		<input type="search" placeholder="Поиск" name="search" id="search-2" data-items="second">
+		<div class="search-result" data-items-target="second">
+			<ul>
+				<li><a href="#" class="custom-element">6.67" Смартфон Xiaomi Mi 10T 128 ГБ серебристый</a></li>
+				<li><a href="#" class="custom-element">6.7" Смартфон Apple iPhone 12 Pro Max 256 ГБ серебристый</a></li>
+				<li><a href="#" class="custom-element">6.8" Смартфон Samsung Galaxy S21 Ultra 512 ГБ черный</a></li>
+				<li><a href="#" class="custom-element">7.6" Смартфон Samsung Galaxy Z Fold2 256 ГБ коричневый</a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<script src="graph-page-filter.min.js"></script>
+	<script>
+		const filter1 = new GraphPageFilter('#search');
+
+		const filter2 = new GraphPageFilter('#search-2', {
+			highlightClass: 'custom-highlight',
+			childClass:'custom-element',
+			hiddenClass: 'custom-hidden',
+			onInput: (filter) => {
+				console.log(filter);
+			}
+		});
+	</script>
+</body>
+</html>
